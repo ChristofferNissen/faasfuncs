@@ -6,8 +6,10 @@ os: linux
 
 jobs:
     include:
-     - os: linux
-       arch: arm64
+      - os: linux
+        arch: arm64
+      - stage: build
+        script: 
 
 services:
   - docker-armhf
@@ -25,21 +27,23 @@ cache: yarn
 
 before_install:
   # installing newer docker
-  - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-
+  # architecture
   - sudo dpkg --add-architecture armhf
   - dpkg --print-architecture
   - dpkg --print-foreign-architectures
 
-  # installing the faas-cli
-  - curl -sSL https://cli.openfaas.com | sudo sh
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  - faas-cli build -f cstest.yml
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce:armhf
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    - faas-cli push -f cstest.yml
+
+    # installing the faas-cli
+    - curl -sSL https://cli.openfaas.com | sudo sh
+    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    - faas-cli build -f cstest.yml
+    
+    - faas-cli push -f c  stest.yml
     - faas-cli login --username admin --password="$OPENFAAS_PASS" -g http://christoffernissen.me:8080
     - faas-cli deploy -f cstest.yml
     fi
