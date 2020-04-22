@@ -1,6 +1,6 @@
 FROM openfaas/classic-watchdog:0.18.1 as watchdog
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2.203-stretch-arm32v7 as builder
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1.201-buster-arm64v8 as builder
 
 # Supress collection of data.
 ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
@@ -19,7 +19,7 @@ COPY .  .
 
 RUN dotnet publish -c release -o published -r linux-arm
 
-FROM mcr.microsoft.com/dotnet/core/runtime:2.2.4-stretch-slim-arm32v7
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1.3-buster-slim-arm64v8
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
