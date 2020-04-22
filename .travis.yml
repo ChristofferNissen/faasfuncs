@@ -10,9 +10,9 @@ jobs:
        arch: arm64
 
 services:
-  - docker
+  - docker-armhf
 
-language: erlang
+language: python3
 
 matrix:
     include:
