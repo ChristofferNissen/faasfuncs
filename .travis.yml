@@ -30,13 +30,13 @@ before_install:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
 
-    # installing the faas-cli
-    - curl -sSL https://cli.openfaas.com | sudo sh
-    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    - faas-cli build -f cstest.yml
-    
-    - faas-cli push -f c  stest.yml
-    - faas-cli login --username admin --password="$OPENFAAS_PASS" -g http://christoffernissen.me:8080
-    - faas-cli deploy -f cstest.yml
+      # installing the faas-cli
+      - curl -sSL https://cli.openfaas.com | sudo sh
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      - faas-cli build -f cstest.yml
+      
+      - faas-cli push -f c  stest.yml
+      - faas-cli login --username admin --password="$OPENFAAS_PASS" -g http://christoffernissen.me:8080
+      - faas-cli deploy -f cstest.yml
     fi
   # you can deploy to a dev or prod (whatever) environment at this stage
