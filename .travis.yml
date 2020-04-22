@@ -24,7 +24,7 @@ before_install:
   - sudo dpkg --add-architecture armhf
   - dpkg --print-architecture
   - dpkg --print-foreign-architectures
-  - sudo apt-get -yq install crossbuild-essential-armhf libc6:armhf
+  - sudo apt-get -yq install crossbuild-essential-armhf
 
   # installing the faas-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
