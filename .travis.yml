@@ -2,13 +2,10 @@ arch: arm64
 services:
   - docker
 script:
-  # - sudo dpkg --add-architecture armhf
   - dpkg --print-architecture
-  # - dpkg --print-foreign-architectures
   
   # installing newer docker
   - sudo apt-get update
-  # - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   
   # installing the faas-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
