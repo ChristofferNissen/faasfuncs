@@ -1,7 +1,8 @@
 sudo: required
 
 arch:
-  - arm32
+  - arm64
+os: linux
 
 services:
   - docker
