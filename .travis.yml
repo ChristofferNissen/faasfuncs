@@ -8,8 +8,6 @@ jobs:
     include:
       - os: linux
         arch: arm64
-      - stage: build
-        script: 
 
 services:
   - docker-armhf
@@ -48,4 +46,3 @@ after_success:
     - faas-cli deploy -f cstest.yml
     fi
   # you can deploy to a dev or prod (whatever) environment at this stage
-  
