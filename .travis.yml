@@ -18,4 +18,5 @@ after_success:
       - faas-cli login --username admin --password="$OPENFAAS_PASS" -g http://christoffernissen.me:8080
       - faas-cli deploy -f cstest.yml
     fi
+
     
