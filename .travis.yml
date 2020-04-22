@@ -1,4 +1,6 @@
 arch: arm64
+services:
+  - docker
 script:
   # - sudo dpkg --add-architecture armhf
   - dpkg --print-architecture
@@ -6,14 +8,16 @@ script:
   
   # installing newer docker
   - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  # - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   
   # installing the faas-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   - faas-cli build -f cstest.yml
 
-  - faas-cli push -f cstest.yml
-  - faas-cli login --username admin --password="$OPENFAAS_PASS" -g http://christoffernissen.me:8080
-  - faas-cli deploy -f cstest.yml
-  # you can deploy to a dev or prod (whatever) environment at this stage
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      - faas-cli push -f cstest.yml
+      - faas-cli login --username admin --password="$OPENFAAS_PASS" -g http://christoffernissen.me:8080
+      - faas-cli deploy -f cstest.yml
+    fi
