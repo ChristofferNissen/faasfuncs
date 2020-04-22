@@ -1,5 +1,9 @@
 sudo: required
 
+arch:
+  - arm64
+  - armhf
+
 services:
   - docker
 
