@@ -48,3 +48,4 @@ after_success:
     - faas-cli deploy -f cstest.yml
     fi
   # you can deploy to a dev or prod (whatever) environment at this stage
+  
