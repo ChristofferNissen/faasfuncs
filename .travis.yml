@@ -14,6 +14,13 @@ services:
 
 language: erlang
 
+matrix:
+    include:
+        - os: linux
+          arch: arm64
+          compiler: gcc
+          env: CONFIG_OPTS="--strict-warnings"
+
 cache: yarn
 
 before_install:
