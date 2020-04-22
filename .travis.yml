@@ -1,15 +1,7 @@
 arch: arm64
-os: linux
-dist: bionic
-
 services:
   - docker
-
-language: python
-
-cache: yarn
-
-before_install:
+script:
   - sudo dpkg --add-architecture armhf
   - dpkg --print-architecture
   - dpkg --print-foreign-architectures
@@ -23,7 +15,6 @@ before_install:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   - faas-cli build -f cstest.yml
 
-after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       - faas-cli push -f cstest.yml
       - faas-cli login --username admin --password="$OPENFAAS_PASS" -g http://christoffernissen.me:8080
