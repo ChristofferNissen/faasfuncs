@@ -10,7 +10,7 @@ jobs:
         arch: arm64
 
 services:
-  - docker-armhf
+  - docker
 
 language: python3
 
