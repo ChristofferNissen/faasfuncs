@@ -14,6 +14,7 @@ before_install:
   # installing the faas-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  - faas-cli build -f cstest.yml
   - faas-cli push -f cstest.yml
 
 
