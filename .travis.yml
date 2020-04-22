@@ -1,13 +1,7 @@
 sudo: required
 
-arch:
-  - arm64
+arch: arm64
 os: linux
-
-jobs:
-    include:
-      - os: linux
-        arch: arm64
 
 services:
   - docker
