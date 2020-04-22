@@ -1,12 +1,6 @@
-sudo: required
-
 arch: arm64
 os: linux
-
-jobs:
-    include:
-     - os: linux
-       arch: arm64
+dist: bionic
 
 services:
   - docker
