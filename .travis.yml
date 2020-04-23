@@ -1,17 +1,28 @@
 arch: arm64
 services:
   - docker
-script:
+
+before_install: 
+  # check archicture. .com does not support arm atm.
   - dpkg --print-architecture
   
   # installing newer docker
   - sudo apt-get update
   
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  
   # installing the faas-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  
+script:
+  # Build
   - faas-cli build -f cstest.yml
-
-  - faas-cli push -f cstest.yml
+  
+  # Test
+  # testing tbc later..
+    
+after_install: 
+  # Deploy
   - faas-cli login --username admin --password="$OPENFAAS_PASS" -g http://christoffernissen.me:8080
+  - faas-cli push -f cstest.yml
   - faas-cli deploy -f cstest.yml
