@@ -1,7 +1,7 @@
 version: 1.0
 provider:
   name: openfaas
-  gateway: http://christoffernissen.me:8080
+  gateway: https://gateway.christoffernissen.me
 functions:
   cstest:
     lang: csharp-armhf
