@@ -1,4 +1,7 @@
 arch: arm64
+os: linux
+dist: xenial
+lang: python
 services:
   - docker
 
