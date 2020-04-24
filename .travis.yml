@@ -1,7 +1,4 @@
 arch: arm64
-os: linux
-dist: xenial
-language: ruby
 services:
   - docker
 
