@@ -7,10 +7,19 @@ import os
 import paho.mqtt.client as mqtt
 import requests
 
+
+def get_file(path):
+    v = ""
+    with open(path) as f:
+        v = f.read()
+        f.close()
+    return v.strip()
+
+
 MQTT_ADDRESS = 'influx.itu.dk'
 MQTT_PORT = 8883
 MQTT_USER = 'smartreader'
-MQTT_PASSWORD = os.getenv('mqtt-pass')
+MQTT_PASSWORD = get_file('/etc/secret-volume/mqtt-pass')
 MQTT_TOPIC = 'IoT2020sec/meters'
 MQTT_CAPATH = './certs/ca-certificates.crt'
 
