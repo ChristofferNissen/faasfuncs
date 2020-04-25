@@ -34,8 +34,8 @@ script:
   ### IOT ###
   
   # set secrets
-  - echo -n $INFLUX_USER | docker secret create influx-user -
-  - echo -n $INFLUX_PASS | docker secret create influx-pass -
+  - echo -n $INFLUX_USER | faas-cli secret create influx-user -g https://gateway.christoffernissen.me
+  - echo -n $INFLUX_PASS | faas-cli secret create influx-pass -g https://gateway.christoffernissen.me
 
   - faas-cli up -f iot/iot-assignment2.yml
 
