@@ -52,8 +52,8 @@ def _send_sensor_data_to_influxdb(sensor_data):
         }
     ]
     influxdb_client.write_points(json_body)
-    return str(sensor_data, 'was saved to InfluxDB successfully.')
-
+    print(sensor_data, 'was saved to InfluxDB successfully.')
+    return json_body
 
 def _init_influxdb_database():
     databases = influxdb_client.get_list_database()
@@ -78,4 +78,4 @@ def handle(req):
     if sensor_data is not None:
         return _send_sensor_data_to_influxdb(sensor_data)
 
-    return str("Errored:", req)
+    return req
