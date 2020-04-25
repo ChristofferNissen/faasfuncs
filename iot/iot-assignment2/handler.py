@@ -40,14 +40,14 @@ def _parse_mqtt_message(payload):
 def _send_sensor_data_to_influxdb(sensor_data):
     json_body = [
         {
-            'measurement': 'smart_meter',
-            'tags': {
-                'is_data_real': sensor_data.is_data_real
+            "measurement": "smart_meter",
+            "tags": {
+                "is_data_real": str(sensor_data.is_data_real)
             },
-            'fields': {
-                'meter_id': sensor_data.meter_id,
-                'timestamp': sensor_data.timestamp,
-                'value': sensor_data.value
+            "fields": {
+                "meter_id": str(sensor_data.meter_id),
+                "timestamp": str(sensor_data.timestamp),
+                "value": str(sensor_data.value)
             }
         }
     ]
