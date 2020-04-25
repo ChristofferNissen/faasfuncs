@@ -28,8 +28,8 @@ script:
   # testing tbc later..
   
   # Deploy
-  - faas-cli push -f cstest.yml
-  - faas-cli deploy -f cstest.yml
+  - faas-cli push -f cstest-func/cstest.yml
+  - faas-cli deploy -f cstest-func/cstest.yml
 
   ### IOT ###
   
