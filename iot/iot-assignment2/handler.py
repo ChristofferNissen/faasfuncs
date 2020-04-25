@@ -68,6 +68,8 @@ def handle(req):
     Args:
         req (str): request body
     """
+    print(req)
+    
     _init_influxdb_database()
 
     print('req', req)
