@@ -71,20 +71,20 @@ def handle(req):
 
     print(req)
     
-    # _init_influxdb_database()
+    _init_influxdb_database()
 
-    # print('req', req)
+    print('req', req)
 
-    # r = json.loads(req)
+    r = json.loads(req)
 
-    # print(r)
+    print(r)
 
-    # bts = bytes(r['data'], 'utf-8')
+    bts = bytes(r['data'], 'utf-8')
 
-    # print(bts)
+    print(bts)
 
-    # sensor_data = _parse_mqtt_message(bts)
-    # if sensor_data is not None:
-    #     _send_sensor_data_to_influxdb(sensor_data)
+    sensor_data = _parse_mqtt_message(bts)
+    if sensor_data is not None:
+        _send_sensor_data_to_influxdb(sensor_data)
 
     return req
