@@ -20,7 +20,8 @@ before_install:
 script:
   - echo $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
   
-  # ##w# CSTEST ###
+  ### CSTEST ###
+  
   # # Build
   # - faas-cli build -f cstest-func/cstest.yml
   
@@ -37,7 +38,7 @@ script:
   - echo -n $INFLUX_USER | faas-cli secret create influx-user -g https://gateway.christoffernissen.me
   - echo -n $INFLUX_PASS | faas-cli secret create influx-pass -g https://gateway.christoffernissen.me
 
-  - faas-cli up -f iot/iot-assignment2.yml
+  - faas-cli up -f iot/iot-assignment2.yml --env write_debug=true
 
   - docker build -f iot/helper/Dockerfile.armhf iot/helper -t stifstof/iotmqttinterceptor
   - docker push stifstof/iotmqttinterceptor:latest

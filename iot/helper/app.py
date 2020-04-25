@@ -23,12 +23,9 @@ MQTT_PASSWORD = os.getenv('mqtt-pass')
 MQTT_TOPIC = 'IoT2020sec/meters'
 MQTT_CAPATH = './certs/ca-certificates.crt'
 
-#4mp3r3h0ur
 
-topic_name=MQTT_TOPIC
-# gateway_url=MQTT_ADDRESS
-# topic_name = os.getenv("topic", "sensor-readings")
 gateway_url = os.getenv("gateway_url", "https://gateway.christoffernissen.me")
+topic_name=MQTT_TOPIC
 
 
 print("Using gateway {} and topic {}".format(gateway_url, topic_name))
@@ -49,7 +46,7 @@ def on_message(client, userdata, msg):
     }
     r = json.dumps(data)
     
-    print("r", r)
+    print("Request data(json):", r)
     
     with open("./samples.txt", "a") as f:
         f.write(r + "\n")
