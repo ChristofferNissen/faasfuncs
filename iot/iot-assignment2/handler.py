@@ -74,7 +74,7 @@ def handle(req):
 
     print(r)
 
-    bts = bytes(r["data"], 'utf-8')
+    bts = bytes(r['data'], 'utf-8')
 
     print(bts)
 
