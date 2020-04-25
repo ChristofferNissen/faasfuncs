@@ -72,7 +72,7 @@ def handle(req):
 
     r = json.loads(req)
 
-    sensor_data = _parse_mqtt_message(r)
+    sensor_data = _parse_mqtt_message(r["data"])
     if sensor_data is not None:
         _send_sensor_data_to_influxdb(sensor_data)
 
