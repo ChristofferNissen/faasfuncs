@@ -53,21 +53,10 @@ def _send_sensor_data_to_influxdb(sensor_data):
     ]
     influxdb_client.write_points(json_body)
     # print(sensor_data, 'was saved to InfluxDB successfully.')
+
+    j = json.loads(json_body[0])
     
-    json_return = [
-        {
-            "measurement": "smart_meter",
-            "tags": {
-                "is_data_real": str(sensor_data.is_data_real)
-            },
-            "fields": {
-                "meter_id": str(sensor_data.meter_id),
-                "timestamp": str(sensor_data.timestamp),
-                "value": str(sensor_data.value)
-            }
-        }
-    ]
-    return json_return[0]
+    return json.dumps(j)
 
 def _init_influxdb_database():
     databases = influxdb_client.get_list_database()
