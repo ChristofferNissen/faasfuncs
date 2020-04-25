@@ -53,7 +53,7 @@ def _send_sensor_data_to_influxdb(sensor_data):
     ]
     influxdb_client.write_points(json_body)
     # print(sensor_data, 'was saved to InfluxDB successfully.')
-    return json_body
+    return json_body[0]
 
 def _init_influxdb_database():
     databases = influxdb_client.get_list_database()
