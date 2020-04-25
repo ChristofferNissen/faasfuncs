@@ -4,6 +4,12 @@ from influxdb import InfluxDBClient
 import json
 import os
 
+def get_file(path):
+    v = ""
+    with open(path) as f:
+        v = f.read()
+        f.close()
+    return v.strip()
 
 INFLUXDB_ADDRESS = os.getenv("influx_host")
 INFLUXDB_PORT = os.getenv("influx_port")
@@ -19,12 +25,6 @@ class SensorData(NamedTuple):
     timestamp : int
     value : int
 
-def get_file(path):
-    v = ""
-    with open(path) as f:
-        v = f.read()
-        f.close()
-    return v.strip()
 
 def _parse_mqtt_message(payload):
     bts = base64.b64decode(payload)
