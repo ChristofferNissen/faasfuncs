@@ -52,7 +52,7 @@ def _send_sensor_data_to_influxdb(sensor_data):
         }
     ]
     influxdb_client.write_points(json_body)
-    print(sensor_data, 'was saved to InfluxDB successfully.')
+    return str(sensor_data, 'was saved to InfluxDB successfully.')
 
 
 def _init_influxdb_database():
@@ -76,6 +76,6 @@ def handle(req):
 
     sensor_data = _parse_mqtt_message(bts)
     if sensor_data is not None:
-        _send_sensor_data_to_influxdb(sensor_data)
+        return _send_sensor_data_to_influxdb(sensor_data)
 
-    return req
+    return str("Errored:", req)
