@@ -18,13 +18,27 @@ before_install:
   - curl -sSL https://cli.openfaas.com | sudo sh
   
 script:
+  - echo $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
+  
+  ##w# CSTEST ###
   # Build
-  - faas-cli build -f cstest.yml
+  - faas-cli build -f cstest-func/cstest.yml
   
   # Test
   # testing tbc later..
-
+  
   # Deploy
-  - echo $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
   - faas-cli push -f cstest.yml
   - faas-cli deploy -f cstest.yml
+
+  ### IOT ###
+  
+  # set secrets
+  - echo -n $INFLUX_USER | docker secret create influx-user -
+  - echo -n $INFLUX_PASS | docker secret create influx-pass -
+
+  - faas-cli up -f iot/iot-assignment2.yml
+
+
+  
+  
