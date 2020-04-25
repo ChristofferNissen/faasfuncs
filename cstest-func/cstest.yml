@@ -5,6 +5,6 @@ provider:
 functions:
   cstest:
     lang: csharp-armhf
-    handler: .cstest-func/cstest
+    handler: ./cstest-func/cstest
     image: stifstof/csharptest:latest
 
