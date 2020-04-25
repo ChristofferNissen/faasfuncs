@@ -70,6 +70,8 @@ def handle(req):
     """
     _init_influxdb_database()
 
+    print('req', req)
+
     r = json.loads(req)
 
     print(r)
