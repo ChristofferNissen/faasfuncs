@@ -63,5 +63,5 @@ mqtt_client.tls_set(MQTT_CAPATH)
 mqtt_client.on_connect = on_connect
 mqtt_client.on_message = on_message
 
-mqtt_client.connect(MQTT_ADDRESS, MQTT_PORT, 60)
+mqtt_client.connect(MQTT_ADDRESS, MQTT_PORT)
 mqtt_client.loop_forever()
