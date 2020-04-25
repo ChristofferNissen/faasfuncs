@@ -13,5 +13,5 @@ functions:
     environment:
       influx_host: ec2-34-226-215-115.compute-1.amazonaws.com
       influx_port: 8086
-      influx_db: smart_meter
+      influx_db: smart_meter_cluster
 
