@@ -42,5 +42,5 @@ script:
   - docker build -f iot/helper/Dockerfile.armhf iot/helper -t stifstof/iotmqttinterceptor
   - docker push stifstof/iotmqttinterceptor:latest
 
-  # kubectl run --image=stifstof/iotmqttinterceptor iotmqttinterceptor-app --env write_debug=true
+  # kubectl run --image=stifstof/iotmqttinterceptor iotmqttinterceptor-app --env="mqtt-pass="
   

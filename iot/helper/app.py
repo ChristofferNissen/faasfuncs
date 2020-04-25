@@ -19,7 +19,7 @@ def get_file(path):
 MQTT_ADDRESS = 'influx.itu.dk'
 MQTT_PORT = 8883
 MQTT_USER = 'smartreader'
-MQTT_PASSWORD = get_file('/etc/secret-volume/mqtt-pass')
+MQTT_PASSWORD = os.getenv('mqtt-pass')
 MQTT_TOPIC = 'IoT2020sec/meters'
 MQTT_CAPATH = './certs/ca-certificates.crt'
 
