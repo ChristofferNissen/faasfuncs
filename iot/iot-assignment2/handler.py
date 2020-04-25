@@ -52,7 +52,7 @@ def _send_sensor_data_to_influxdb(sensor_data):
         }
     ]
     influxdb_client.write_points(json_body)
-    print(sensor_data, 'was saved to InfluxDB successfully.')
+    # print(sensor_data, 'was saved to InfluxDB successfully.')
     return json_body
 
 def _init_influxdb_database():
@@ -60,7 +60,7 @@ def _init_influxdb_database():
     if len(list(filter(lambda x: x['name'] == INFLUXDB_DATABASE, databases))) == 0:
         influxdb_client.create_database(INFLUXDB_DATABASE)
     influxdb_client.switch_database(INFLUXDB_DATABASE)
-    print('Influx DB was initialized successfully.')
+    # print('Influx DB was initialized successfully.')
 
 
 def handle(req):
