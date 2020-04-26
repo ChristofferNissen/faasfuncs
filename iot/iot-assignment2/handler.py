@@ -75,7 +75,7 @@ def handle(req):
     print("req:", req)
 
     r = json.loads(req)
-    bts = r['data']
+    bts = r['data'].decode()
 
     print("r:", r)
     print("bts:", bts)
