@@ -75,9 +75,8 @@ def handle(req):
     print("req:", req)
 
     r = json.loads(req)
-    bts = r['data'].decode()
+    bts = bytes(r['data'][2:-1],'utf-8')
 
-    print("r:", r)
     print("bts:", bts)
 
     sensor_data = _parse_mqtt_message(bts)
