@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="function\Function.csproj" />
   </ItemGroup>
+  
  <PropertyGroup>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
  </PropertyGroup>
