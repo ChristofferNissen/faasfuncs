@@ -20,6 +20,7 @@ before_install:
 script:
   - echo $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
   
+  
   ### CSTEST ###
   
   # # Build
@@ -37,10 +38,20 @@ script:
   # set secrets
   - echo -n $INFLUX_USER | faas-cli secret create influx-user -g https://gateway.christoffernissen.me
   - echo -n $INFLUX_PASS | faas-cli secret create influx-pass -g https://gateway.christoffernissen.me
-
+  
   - faas-cli up -f iot/iot-assignment2.yml --env write_debug=true
   # - faas-cli up -f iot/iot-ml-func.yml --env write_debug=true
   
+  # keep alive script
+  - 
+    function write_visual_bells() {
+      while true; do
+        echo -en "\a"
+        sleep 10
+      done
+    }
+    write_visual_bells&
+    
   - travis_wait 30 faas-cli build -f iot/iot-ml-func.yml
   - faas-cli push -f iot/iot-ml-func.yml
   - faas-cli deploy -f iot/iot-ml-func.yml --env write_debug=true
