@@ -2,6 +2,11 @@ FROM openfaas/classic-watchdog:0.18.1 as watchdog
 
 FROM python:3-alpine
 
+# RUN apk --no-cache add --virtual .builddeps g++ musl-dev     && pip install scikit-learn==0.19.1     && apk del .builddeps     && rm -rf /root/.cache
+RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
+RUN pip install pandas
+
 # Allows you to add additional packages via build-arg
 ARG ADDITIONAL_PACKAGE
 
