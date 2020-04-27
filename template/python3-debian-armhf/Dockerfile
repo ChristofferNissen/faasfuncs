@@ -1,6 +1,8 @@
 FROM openfaas/classic-watchdog:0.18.1 as watchdog
 FROM python:3
 
+RUN apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+
 # Allows you to add additional packages via build-arg
 ARG ADDITIONAL_PACKAGE
 

@@ -19,12 +19,17 @@ before_install:
 
 jobs:
   include:
+<<<<<<< HEAD
     - stage: OpenFaas login
+=======
+    - stage: Create OpenFaas secrets 
+>>>>>>> fd12efd4d05cbb5109ffe292eb57f3cc617d19b7
       script:
         - echo -n $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
         - echo -n $INFLUX_USER | faas-cli secret create influx-user -g https://gateway.christoffernissen.me
         - echo -n $INFLUX_PASS | faas-cli secret create influx-pass -g https://gateway.christoffernissen.me
 
+<<<<<<< HEAD
       - stage: functions
         script:
           - faas-cli up -f iot/iot-assignment2.yml --env write_debug=true
@@ -34,6 +39,18 @@ jobs:
         script:
           - docker build -f iot/helper/Dockerfile iot/helper -t stifstof/iotmqttinterceptor
           - docker push stifstof/iotmqttinterceptor:latest
+=======
+    - stage: functions
+      script:
+        - echo -n $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
+        - faas-cli up -f iot/iot-assignment2.yml --env write_debug=true
+        # - faas-cli up -f iot/iot-ml-func.yml --env write_debug=true
+
+    - stage: mqtt helper container
+      script:
+        - docker build -f iot/helper/Dockerfile iot/helper -t stifstof/iotmqttinterceptor
+        - docker push stifstof/iotmqttinterceptor:latest
+>>>>>>> fd12efd4d05cbb5109ffe292eb57f3cc617d19b7
 
   # kubectl run --image=stifstof/iotmqttinterceptor iotmqttinterceptor-app --env="mqtt-pass="
   
