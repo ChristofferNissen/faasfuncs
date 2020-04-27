@@ -16,7 +16,7 @@ MQTT_CAPATH = './certs/ca-certificates.crt'
 gateway_url = os.getenv("gateway_url", "https://gateway.christoffernissen.me")
 
 
-print("Using gateway {} and topic {}".format(gateway_url, topic_name))
+print("Using gateway {} and topic {}".format(gateway_url, MQTT_TOPIC))
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):

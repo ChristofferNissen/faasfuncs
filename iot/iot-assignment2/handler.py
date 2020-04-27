@@ -72,8 +72,12 @@ def handle(req):
     
     _init_influxdb_database()
 
+    # print("req:", req)
+
     r = json.loads(req)
-    bts = bytes(r['data'], 'utf-8')
+    bts = bytes(r['data'][2:-1],'utf-8')
+
+    # print("bts:", bts)
 
     sensor_data = _parse_mqtt_message(bts)
     if sensor_data is not None:
