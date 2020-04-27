@@ -1,6 +1,0 @@
-/home/cn/cluster/faasfuncs/cstest-func/cstest/bin/Debug/netstandard2.0/Function.deps.json
-/home/cn/cluster/faasfuncs/cstest-func/cstest/bin/Debug/netstandard2.0/Function.dll
-/home/cn/cluster/faasfuncs/cstest-func/cstest/bin/Debug/netstandard2.0/Function.pdb
-/home/cn/cluster/faasfuncs/cstest-func/cstest/obj/Debug/netstandard2.0/Function.csprojAssemblyReference.cache
-/home/cn/cluster/faasfuncs/cstest-func/cstest/obj/Debug/netstandard2.0/Function.dll
-/home/cn/cluster/faasfuncs/cstest-func/cstest/obj/Debug/netstandard2.0/Function.pdb
