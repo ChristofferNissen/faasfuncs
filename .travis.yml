@@ -20,7 +20,6 @@ before_install:
 script:
   - echo $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
   
-  
   ### CSTEST ###
   
   # # Build
@@ -51,11 +50,8 @@ script:
       done
     }
     write_visual_bells&
-
-  - travis_wait 30 faas-cli build -f iot/iot-ml-func.yml
-  - faas-cli push -f iot/iot-ml-func.yml
-  - faas-cli deploy -f iot/iot-ml-func.yml --env write_debug=true
-  
+    
+    travis_wait 30 faas-cli up -f iot/iot-ml-func.yml
 
   # - docker build -f iot/helper/Dockerfile iot/helper -t stifstof/iotmqttinterceptor
   # - docker push stifstof/iotmqttinterceptor:latest
