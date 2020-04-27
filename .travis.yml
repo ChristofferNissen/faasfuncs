@@ -17,20 +17,23 @@ before_install:
   # installing the faas-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
 
-script:
-  - echo -n $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
-  
-  - echo -n $INFLUX_USER | faas-cli secret create influx-user -g https://gateway.christoffernissen.me
-  - echo -n $INFLUX_PASS | faas-cli secret create influx-pass -g https://gateway.christoffernissen.me
-  
-  - faas-cli up -f iot/iot-assignment2.yml --env write_debug=true
-  # - faas-cli up -f iot/iot-ml-func.yml --env write_debug=true
-  - faas-cli build -f iot/iot-ml-func.yml
-  - faas-cli push -f iot/iot-ml-func.yml 
-  - faas-cli deploy -f iot/iot-ml-func.yml --env write_debug=true
+jobs:
+  include:
+    - stage: build
+      script:
+          - echo -n $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
 
-  - docker build -f iot/helper/Dockerfile iot/helper -t stifstof/iotmqttinterceptor
-  - docker push stifstof/iotmqttinterceptor:latest
+          - echo -n $INFLUX_USER | faas-cli secret create influx-user -g https://gateway.christoffernissen.me
+          - echo -n $INFLUX_PASS | faas-cli secret create influx-pass -g https://gateway.christoffernissen.me
+
+          - faas-cli up -f iot/iot-assignment2.yml --env write_debug=true
+          # - faas-cli up -f iot/iot-ml-func.yml --env write_debug=true
+          - faas-cli build -f iot/iot-ml-func.yml
+          - faas-cli push -f iot/iot-ml-func.yml 
+          - faas-cli deploy -f iot/iot-ml-func.yml --env write_debug=true
+
+          - docker build -f iot/helper/Dockerfile iot/helper -t stifstof/iotmqttinterceptor
+          - docker push stifstof/iotmqttinterceptor:latest
 
   # kubectl run --image=stifstof/iotmqttinterceptor iotmqttinterceptor-app --env="mqtt-pass="
   
