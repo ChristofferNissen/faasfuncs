@@ -3,7 +3,7 @@ provider:
   name: openfaas
   gateway: https://gateway.christoffernissen.me
 functions:
-  iot-assignment2:
+  iot-ml-train-func:
     lang: python3-debian
     handler: ./iot/iot-ml-func
     image: stifstof/iot-ml-func:latest
