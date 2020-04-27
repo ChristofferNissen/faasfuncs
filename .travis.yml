@@ -50,8 +50,10 @@ script:
       done
     }
     write_visual_bells&
+
+    echo test
     
-    travis_wait 30 faas-cli up -f iot/iot-ml-func.yml
+    faas-cli up -f iot/iot-ml-func.yml
 
   # - docker build -f iot/helper/Dockerfile iot/helper -t stifstof/iotmqttinterceptor
   # - docker push stifstof/iotmqttinterceptor:latest
