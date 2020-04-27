@@ -17,9 +17,6 @@ before_install:
   # installing the faas-cli
   - curl -sSL https://cli.openfaas.com | sudo sh
 
-  
-install: travis_wait 30 mvn install
-
 script:
   - echo $OPENFAAS_PASS | faas-cli login --username admin --password-stdin -g https://gateway.christoffernissen.me
   
@@ -44,7 +41,7 @@ script:
   - faas-cli up -f iot/iot-assignment2.yml --env write_debug=true
   # - faas-cli up -f iot/iot-ml-func.yml --env write_debug=true
   
-  - faas-cli build -f iot/iot-ml-func.yml
+  - travis_wait 30 faas-cli build -f iot/iot-ml-func.yml
   - faas-cli push -f iot/iot-ml-func.yml
   - faas-cli deploy -f iot/iot-ml-func.yml --env write_debug=true
   
